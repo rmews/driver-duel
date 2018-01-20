@@ -1,3 +1,5 @@
+{% import 'macros/flash.html' as flash with context %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
           content="{% block meta_description %}{% endblock %}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{% block page_title %}{% endblock %}</title>
 
     <!-- load sexy styles -->
@@ -52,6 +55,7 @@
     </header>
     <!-- body content -->
     <main role="main">
+        {{ flash.render() }}
         {% block body %}{% endblock %}
 
         <!-- footer -->
@@ -73,7 +77,7 @@
                                 <a class="nav-link" href="{{ url_for('page.terms') }}">Terms</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="{{ url_for('contact.index') }}">Contact</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('page.faq') }}">FAQ</a>

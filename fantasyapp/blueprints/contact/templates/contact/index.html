@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block page_title %}Contact us with your feedback or issues{% endblock %}
+{% block meta_description %}Contact our customer service department with any
+questions or concerns.{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <div class="container">
+            <div class="row contact-details">
+                <div class="col-sm-8 m-auto text-center">
+                    <h2>Contact Us</h2>
+                    <p class="lead constrain-width mt-4">Contact us with your feedback or issues and we will get back to you.</p>
+                    <div class="divider"></div>
+
+                    {# call macro to render the form element #}
+                    {% call f.form_tag('contact.index') %}
+
+                        {# call macro to render email input field #}
+                        {% call f.form_group(form.email,
+                                             css_class='mb-4',
+                                             placeholder='Email address') %}
+                        {% endcall %}
+
+                        {# call macro to render another textarea field #}
+                        {% call f.form_group(form.message,
+                                             css_class='mb-4',
+                                             placeholder='Your Message',
+                                             rows='3') %}
+                        {% endcall %}
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Send Message</button>
+                    {% endcall %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
