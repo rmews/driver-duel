@@ -1,0 +1,332 @@
+/********** Global Styles **********/
+
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background-color: #D3D1D9;
+    color: #282929;
+    padding-top: 5rem;
+}
+
+/* Set those Google Fonts */
+
+h1 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+}
+
+h3 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+h4 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+a {
+    color: #2D3B60;
+}
+
+.justify-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider {
+    display: block;
+    width: 6rem;
+    height: 0.1rem;
+    background-color: #DFB06D;
+    margin: 1rem auto;
+}
+
+/* Set those breakpoint styles */
+
+@media screen and (max-width: 768px) {
+    .nav-footer {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .cover .cover-container {
+        display: table;
+        height: 100%;
+        min-height: 30rem;
+        margin: 0 auto;
+    }
+}
+
+/********** Nav Styles **********/
+
+.navbar-custom {
+    background: #2D3B60;
+}
+
+a.navbar-brand, a.logo {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #FDFEFE !important;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+a.logo:hover, a.logo:active, a.logo:focus {
+    text-decoration: none;
+}
+
+/********** Front Page Cover Styles **********/
+
+.cover {
+    background: #2D3B60 center;
+    background: #2D3B60;
+    background-size: cover;
+    margin-top: -1rem;
+    height: auto;
+    border-radius: 0;
+    width: 100%;
+    color: #FDFEFE;
+}
+
+.cover p.lead {
+    margin: 2rem auto;
+    color: #FDFEFE;
+}
+
+.cover .cover-container {
+    display: table;
+    height: 100%;
+    min-height: 34rem;
+    margin: 0 8rem;
+}
+
+.cover-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+/********** Features Styles **********/
+
+.features {
+    padding: 2rem 0;
+}
+
+.features h2 {
+    margin-top: 1rem;
+    color: #435F96;
+}
+
+.features .col-feature {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.features .col-feature .rounded-circle {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    width: 6rem;
+    height: 6rem;
+    background: #435F96;
+    border: 0.15rem solid #435F96;
+}
+
+.features svg {
+    color: #DFB06D;
+}
+
+
+/********** Main Content Area **********/
+
+.content {
+    background: #435F96;
+    padding-bottom: 0.2rem;
+    margin-top: -5rem;
+    margin-bottom: -1rem;
+}
+.content .container {
+    margin: 5rem auto;
+    color: #FDFEFE;
+}
+
+.content .full-width {
+    width: 100%;
+}
+
+
+/********** Footer **********/
+
+.footer {
+    background: #282929;
+    width: 100%;
+    color: #46484a;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+
+.footer .container-fluid {
+    padding: 0;
+}
+
+.footer .divider {
+    width: 100%;
+    height: .1rem;
+    margin: .5rem 0 1.5rem 0;
+}
+
+.footer .nav-footer {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer .nav-footer .nav-link {
+    color: #696b6e;
+}
+
+.footer .nav-footer .nav-link:hover {
+    color: #439DC1;
+}
+
+.footer .social li a {
+    background: none;
+    border: none;
+}
+
+.nav-footer {
+    list-style: none;
+    float: right;
+}
+
+.nav-footer li {
+    float: left;
+    margin-top: .5rem;
+}
+
+.social {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.social li {
+    display: inline-block;
+}
+
+.social li a {
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin: .4rem .1rem;
+    text-align: center;
+    text-decoration: none;
+    background: #fff;
+    color: #696b6e;
+    border: 0.1rem solid #dfe1e5;
+    border-radius: 499rem;
+    line-height: 1.5;
+    font-size: 1.4rem;
+}
+
+.social li a:hover {
+    color: #439DC1;
+    border-color: #439DC1;
+}
+
+
+/********** Button Styles **********/
+
+.btn-lg {
+    padding: 1.1rem 2.5rem;
+    font-size: .9rem;
+}
+
+li.nav-item .btn {
+    margin-top: .2rem;
+    margin-left: .4rem;
+}
+
+/* Pills are for main calls to action */
+
+.pill-btn {
+    border-radius: 499rem !important;
+}
+
+.pill-btn-nav {
+    border-color: #DFB06D;
+    background-color: #DFB06D;
+    color: #FDFDFD;
+}
+
+.pill-btn-nav:hover, .pill-btn-nav:focus, .pill-btn-nav:active {
+    border-color: #b28c57;
+    background-color: #b28c57;
+    color: #FDFDFD;
+}
+
+.pill-btn-cover {
+    border-color: #DFB06D;
+    color: #DFB06D;
+}
+
+.pill-btn-cover:hover, .pill-btn-cover:focus, .pill-btn-cover:active {
+    border-color: #DFB06D;
+    background-color: #DFB06D;
+    color: #FDFDFD;
+}
+
+/* Regular old buttons */
+
+.btn-success, .btn-outline-primary, .btn-outline-success, .btn-outline-secondary {
+    font-size: .75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: .3rem;
+}
+
+.btn-outline-primary, .btn-outline-success, .btn-outline-secondary {
+    border-width: 0.15rem;
+}
+
+.btn-outline-primary, .btn-outline-primary:visited {
+    color: #435F96;
+    border-color: #435F96;
+    background: none;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
+    background-color: #2D3B60;
+    border-color: #2D3B60;
+    color: #FDFEFE;
+}
+
+
+/*********** Link Styles **********/
+
+.link-white, link-white:visited {
+    font-size: .75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: .3rem;
+    border: 0;
+    color: #FDFEFE;
+}
+
+.link-white:hover, .link-white:focus, .link-white:active {
+    color: #cccdcd !important;
+}
