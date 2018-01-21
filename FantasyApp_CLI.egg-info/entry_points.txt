@@ -1,0 +1,3 @@
+
+        [console_scripts]
+        fantasyapp=cli.cli:cli

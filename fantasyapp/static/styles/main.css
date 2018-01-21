@@ -340,14 +340,24 @@ li.nav-item .btn {
 
 /* Regular old buttons */
 
-.btn-success, .btn-outline-primary, .btn-outline-success, .btn-outline-secondary {
+.btn-primary, .btn-success, .btn-outline-primary, .btn-outline-secondary, .btn-outline-success {
     font-size: .75rem;
     text-transform: uppercase;
     font-weight: 700;
     border-radius: .3rem;
 }
 
-.btn-outline-primary, .btn-outline-success, .btn-outline-secondary {
+.btn-primary, .btn-primary:visited {
+    background-color: #435F96;
+    border-color: #435F96;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #2D3B60;
+    border-color: #2D3B60;
+}
+
+.btn-outline-primary, .btn-outline-secondary, .btn-outline-success {
     border-width: 0.15rem;
 }
 

@@ -3,7 +3,7 @@ from celery import Celery
 
 from fantasyapp.blueprints.page import page
 from fantasyapp.blueprints.contact import contact
-from fantasyapp.extensions import mail, csrf
+from fantasyapp.extensions import debug_toolbar, mail, csrf
 
 CELERY_TASK_LIST = [
     'fantasyapp.blueprints.contact.tasks',
@@ -65,6 +65,7 @@ def extensions(app):
     :param app: Flask application instance
     :return: None
     """
+    debug_toolbar.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
 
