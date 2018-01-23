@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/nav.html' %}
 
 {% block page_title %}Driver Duel - NASCAR Fantasy Pick'em With a Twist{% endblock %}
 {% block meta_description %}The fantasy game that's fun and rewarding. With many different ways to win vs. traditional fantasy games.{% endblock %}
@@ -13,8 +13,8 @@
                         <h1 class="jumbotron-heading">NASCAR Fantasy Pick'em With a Twist</h1>
                         <p class="lead">The fantasy game that's fun and rewarding. With many different ways to win vs. traditional fantasy games.</p>
                         <p>
-                            <a href="#" class="btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn pill-btn-cover">Sign Up</a>
-                            <a href="#" class="btn link-white mb-2 ml-2 ml-2 pill-btn">Learn More</a>
+                            <a href="{{ url_for('user.signup') }}" class="btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn pill-btn-cover">Sign Up</a>
+                            <a href="{{ url_for('page.how_to_play') }}" class="btn link-white mb-2 ml-2 ml-2 pill-btn">Learn More</a>
                         </p>
                     </div>
                     <div class="col-lg-5 offset-lg-2 mt-5 mb-5 text-center">
@@ -39,7 +39,7 @@
                     </div>
                     <h4>Collect Drivers</h4>
                     <p>Receive two new random drivers each week. Choose wisely and rank up to earn digital currency.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
                 </div>
                 <div class="col-md-4 col-feature">
                     <div class="rounded-circle justify-center">
@@ -47,7 +47,7 @@
                     </div>
                     <h4>Random Matchmaking</h4>
                     <p>Get paired against a random opponent each week. Each matchup has a variety of ways to rank up to earn digital currency.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
                 </div>
                 <div class="col-md-4 col-feature">
                     <div class="rounded-circle justify-center">
@@ -55,7 +55,7 @@
                     </div>
                     <h4>Leaderboard</h4>
                     <p>Score points with a variety of fun challenges. Track progress over the course of the season to rank up and earn the ultimate prize.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
                 </div>
             </div>
         </div>

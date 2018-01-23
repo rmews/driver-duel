@@ -58,24 +58,6 @@ a {
     margin: 0 auto;
 }
 
-/* Set those breakpoint styles */
-
-@media screen and (max-width: 768px) {
-    .nav-footer {
-        width: 100%;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .cover .cover-container {
-        display: table;
-        height: 100%;
-        min-height: 30rem;
-        margin: 0 auto;
-    }
-}
-
 /********** Nav Styles **********/
 
 .navbar-custom {
@@ -93,6 +75,7 @@ a.navbar-brand, a.logo {
 a.logo:hover, a.logo:active, a.logo:focus {
     text-decoration: none;
 }
+
 
 /********** Front Page Cover Styles **********/
 
@@ -188,13 +171,12 @@ a.logo:hover, a.logo:active, a.logo:focus {
     outline: none;
 }
 
-/* Contact Form */
 .contact {
     padding: 0 0 5rem 0;
 }
 
 .contact .contact-details {
-    padding-top: 5rem;
+    padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
@@ -322,9 +304,9 @@ li.nav-item .btn {
 }
 
 .pill-btn-nav:hover, .pill-btn-nav:focus, .pill-btn-nav:active {
-    border-color: #b28c57;
-    background-color: #b28c57;
-    color: #FDFDFD;
+    border-color: #b28c57 !important;
+    background-color: #b28c57 !important;
+    color: #FDFDFD !important;
 }
 
 .pill-btn-cover {
@@ -333,9 +315,9 @@ li.nav-item .btn {
 }
 
 .pill-btn-cover:hover, .pill-btn-cover:focus, .pill-btn-cover:active {
-    border-color: #DFB06D;
-    background-color: #DFB06D;
-    color: #FDFDFD;
+    border-color: #DFB06D !important;
+    background-color: #DFB06D !important;
+    color: #FDFDFD !important;
 }
 
 /* Regular old buttons */
@@ -353,8 +335,8 @@ li.nav-item .btn {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: #2D3B60;
-    border-color: #2D3B60;
+    background-color: #2D3B60 !important;
+    border-color: #2D3B60 !important;
 }
 
 .btn-outline-primary, .btn-outline-secondary, .btn-outline-success {
@@ -368,9 +350,9 @@ li.nav-item .btn {
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
-    background-color: #2D3B60;
-    border-color: #2D3B60;
-    color: #FDFEFE;
+    background-color: #2D3B60 !important;
+    border-color: #2D3B60 !important;
+    color: #FDFEFE !important;
 }
 
 
@@ -387,4 +369,23 @@ li.nav-item .btn {
 
 .link-white:hover, .link-white:focus, .link-white:active {
     color: #cccdcd !important;
+}
+
+
+/********** Media Queries **********/
+
+@media screen and (max-width: 768px) {
+    .nav-footer {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .cover .cover-container {
+        display: table;
+        height: 100%;
+        min-height: 30rem;
+        margin: 0 2rem;
+    }
 }

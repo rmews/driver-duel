@@ -1,0 +1,36 @@
+{% extends 'layouts/login.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block page_title %}Log into your Driver Duel account{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <div class="container">
+            <div class="row contact-details">
+                <div class="col-sm-4 m-auto text-center">
+                    <h2>Log In</h2>
+                    <div class="divider"></div>
+
+                    {# call macro to render the form element #}
+                    {% call f.form_tag('user.login') %}
+
+                        {# call macro to render identity input field #}
+                        {% call f.form_group(form.identity,
+                                             css_class='mb-4',
+                                             placeholder='Username or email address',
+                                             autofocus='autofocus') %}
+                        {% endcall %}
+
+                        {# call macro to render password input field #}
+                        {% call f.form_group(form.password,
+                                             css_class='mb-4',
+                                             placeholder='Password') %}
+                        {% endcall %}
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Log In</button>
+                    {% endcall %}
+                    <a href="{{ url_for('user.begin_password_reset') }}" class="text-muted">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

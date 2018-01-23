@@ -1,0 +1,36 @@
+{% extends 'layouts/nav.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block page_title %}Sign up for a new account{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <div class="container">
+            <div class="row contact-details">
+                <div class="col-sm-4 m-auto text-center">
+                    <h2>Sign Up</h2>
+                    <div class="divider"></div>
+
+                    {# call macro to render the form element #}
+                    {% call f.form_tag('user.signup') %}
+
+                        {# call macro to render email input field #}
+                        {% call f.form_group(form.email,
+                                             css_class='mb-4',
+                                             placeholder='Email address',
+                                             autofocus='autofocus') %}
+                        {% endcall %}
+
+                        {# call macro to render password input field #}
+                        {% call f.form_group(form.password,
+                                             css_class='mb-4',
+                                             placeholder='Password') %}
+                        {% endcall %}
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Continue</button>
+                    {% endcall %}
+                    <a href="{{ url_for('user.login') }}">Looking to log in?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

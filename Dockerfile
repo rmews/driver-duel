@@ -1,5 +1,8 @@
 FROM python:2.7-slim
 
+RUN apt-get update && apt-get install -qq -y \
+    build-essential libpq-dev --no-install-recommends
+
 ENV INSTALL_PATH /fantasyapp
 RUN mkdir -p $INSTALL_PATH
 

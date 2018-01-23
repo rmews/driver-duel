@@ -1,0 +1,30 @@
+{% extends 'layouts/nav.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block page_title %}Welcome - Select a Username{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <div class="container">
+            <div class="row contact-details">
+                <div class="col-sm-8 m-auto text-center">
+                    <h2>Create a Username</h2>
+                    <p class="lead constrain-width mt-4">You can only create a username once, so make it good!</p>
+                    <div class="divider"></div>
+
+                    {# call macro to render the form element #}
+                    {% call f.form_tag('user.welcome') %}
+
+                        {# call macro to render email input field #}
+                        {% call f.form_group(form.username,
+                                             css_class='mb-4',
+                                             placeholder='Username',
+                                             autofocus='autofocus') %}
+                        {% endcall %}
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Continue</button>
+                    {% endcall %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

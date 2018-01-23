@@ -1,12 +1,22 @@
 from flask import Flask
 from celery import Celery
+from itsdangerous import URLSafeTimedSerializer
 
 from fantasyapp.blueprints.page import page
 from fantasyapp.blueprints.contact import contact
-from fantasyapp.extensions import debug_toolbar, mail, csrf
+from fantasyapp.blueprints.user import user
+from fantasyapp.blueprints.user.models import User
+from fantasyapp.extensions import (
+    debug_toolbar,
+    mail,
+    csrf,
+    db,
+    login_manager
+)
 
 CELERY_TASK_LIST = [
     'fantasyapp.blueprints.contact.tasks',
+    'fantasyapp.blueprints.user.tasks',
 ]
 
 
@@ -53,7 +63,9 @@ def create_app(settings_override=None):
 
     app.register_blueprint(page)
     app.register_blueprint(contact)
+    app.register_blueprint(user)
     extensions(app)
+    authentication(app, User)
 
     return app
 
@@ -68,5 +80,33 @@ def extensions(app):
     debug_toolbar.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
+    db.init_app(app)
+    login_manager.init_app(app)
 
     return None
+
+
+def authentication(app, user_model):
+    """
+    Initialize the Flask-Login extension (mutates the app passed in).
+
+    :param app: Flask application instance
+    :param user_model: Model that contains the authentication information
+    :type user_model: SQLAlchemy model
+    :return: None
+    """
+    login_manager.login_view = 'user.login'
+
+    @login_manager.user_loader
+    def load_user(uid):
+        return user_model.query.get(uid)
+
+    @login_manager.token_loader
+    def load_token(token):
+        duration = app.config['REMEMBER_COOKIE_DURATION'].total_seconds()
+        serializer = URLSafeTimedSerializer(app.secret_key)
+
+        data = serializer.loads(token, max_age=duration)
+        user_uid = data[0]
+
+        return user_model.query.get(user_uid)
