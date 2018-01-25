@@ -34,6 +34,9 @@
                                    aria-expanded="false">Account</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url_for('user.settings') }}">Settings</a>
+                                    {% if current_user.role == 'admin' %}
+                                        {% include 'admin/_menu.html' %}
+                                    {% endif %}
                                     <a class="dropdown-item" href="{{ url_for('user.logout') }}">Log Out</a>
                                 </div>
                             </li>

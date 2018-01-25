@@ -1,0 +1,99 @@
+{% import 'macros/form.html' as f with context %}
+
+{% if request.endpoint.endswith('new') %}
+    {% set endpoint = 'admin.users_new' %}
+    {% set form_kwargs = {} %}
+    {% set legend = 'Add User' %}
+    {% set button = 'Add' %}
+{% else %}
+    {% set endpoint = 'admin.users_edit' %}
+    {% set form_kwargs = {'id': user.id} %}
+    {% set legend = 'Update User' %}
+    {% set button = 'Save' %}
+{% endif %}
+
+<div class="container">
+    <div class="row d-flex justify-content-around">
+        <div class="col-md-4">
+            <h3>{{ legend }}</h3>
+            {% call f.form_tag(endpoint, **form_kwargs) %}
+                <div class="form-group">
+                    <label class="control-label"><strong>Registered</strong></label>
+                    <p class="sm-margin-bottom form-control-static">
+                        <time class="from-now" data-datetime="{{ user.created_on }}">
+                            {{ user.created_on }}
+                        </time>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"><strong>E-mail address</strong></label>
+                    <p class="sm-margin-bottom form-control-static">
+                        {{ user.email }}
+                    </p>
+                </div>
+
+                {% call f.form_group(form.username,
+                                     css_class='mb-4',
+                                     autofocus='autofocus') %}
+                {% endcall %}
+
+                {% call f.drop_down(form.role) %}
+                {% endcall %}
+
+                <br>
+                <br>
+
+                {% call f.form_group(form.active) %}
+                {% endcall %}
+
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        {{ button }}
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="visible-xs visible-sm sm-margin-top"></div>
+                        <a href="{{ url_for('admin.users') }}"
+                           class="btn btn-default btn-block">Cancel
+                        </a>
+                </div>
+            </div>
+        {% endcall %}
+        </div>
+        <div class="col-md-4">
+            <h3>Login activity</h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <dl>
+                    <dt>Sign in count</dt>
+                        <dd class="sm-margin-bottom">{{ user.sign_in_count }}</dd>
+                    <dt>Current sign in date</dt>
+                        <dd class="sm-margin-bottom">
+                            {% if user.current_sign_in_on %}
+                            <time class="from-now"
+                                  data-datetime="{{ user.current_sign_in_on }}">
+                                {{ user.current_sign_in_on }}
+                            </time>
+                            {% endif %}
+                        </dd>
+                    <dt>Current sign in IP address</dt>
+                        <dd class="sm-margin-bottom">{{ user.current_sign_in_ip }}</dd>
+                    <dt>Previous sign in date</dt>
+                        <dd class="sm-margin-bottom">
+                            {% if user.last_sign_in_on %}
+                            <time class="from-now"
+                                  data-datetime="{{ user.last_sign_in_on }}">
+                                {{ user.last_sign_in_on }}
+                            </time>
+                            {% endif %}
+                        </dd>
+                    <dt>Previous sign in IP address</dt>
+                        <dd>{{ user.last_sign_in_ip }}</dd>
+                </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

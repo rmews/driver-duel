@@ -1,0 +1,127 @@
+{% extends 'layouts/nav.html' %}
+{% import 'macros/items.html' as items %}
+{% import 'macros/form.html' as f with context %}
+{% import 'macros/user.html' as account %}
+
+{% block title %}Driver Duel Admin Dashboard - Users{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <!-- Search -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8 col-10">
+                        {{ f.search('admin.users') }}
+                    </div>
+                </div>
+                <br>
+
+                <!-- Search Results -->
+                {% if users.total == 0 %}
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8 col-10">
+                            <br>
+                            <h3>No results found</h3>
+                        </div>
+                    </div>
+                    {% if request.args.get('q') %}
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8 col-10">
+                                <p>Try limiting or removing your search terms.</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>There are no users present, you should <a href="{{ url_for('user.signup') }}">sign up</a>.</p>
+                    {% endif %}
+                {% else %}
+                    {% call f.form_tag('admin.users_bulk_delete') %}
+
+                    <!-- Dropdown that allows bulk delete of selected table rows -->
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-8">
+                            <h3>Update Users</h3>
+                            <div class="input-group" id="bulk_actions">
+                                    {{ f.drop_down(bulk_form.scope, inline=True) }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Table to list all users -->
+                    <div class="row">
+                        <div class="col table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label for="select_all"></label>
+                                            <input id="select_all" name="select_all" type="checkbox">
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('created_on', 'Registered') }}
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('name') }}
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('last_sign_in_on', 'Last seen') }}
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('sign_in_count', 'Sign in count') }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users.items %}
+                                    <tr>
+                                        <td>
+                                            <label for="bulk_ids"></label>
+                                                <input class="checkbox-item"
+                                                       id="bulk_ids"
+                                                       name="bulk_ids"
+                                                       type="checkbox"
+                                                       value="{{ user.id }}">
+                                        </td>
+                                        <td>
+                                            <time class="from-now"
+                                                  data-datetime="{{ user.created_on }}">
+                                                {{ user.created_on }}
+                                            </time>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('admin.users_edit', id=user.id) }}">
+                                                <div class="pull-left">
+                                                    {{ account.role_icon_for(user) }} {{ user.username }}
+                                                </div>
+                                                <p class="text-muted">{{ user.email }}</p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if user.last_sign_in_on %}
+                                                <time class="from-now"
+                                                      data-datetime="{{ user.last_sign_in_on }}">
+                                                    {{ user.last_sign_in_on }}
+                                                </time>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ user.sign_in_count }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endcall %}
+
+                    <!-- pagination -->
+                    {{ items.paginate(users) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

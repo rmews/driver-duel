@@ -54,6 +54,11 @@
     {{ f(class=css_class, **kwargs) }}
 {%- endmacro -%}
 
+{# Render a dropdown field #}
+{%- macro drop_down(f, css_class='custom-select') -%}
+    {{ f(class=css_class, **kwargs) }}
+{%- endmacro -%}
+
 {# Render a form field's errors #}
 {%- macro field_errors(f) -%}
     {% if f.errors %}
@@ -63,4 +68,21 @@
             {% endfor %}
         </ul>
     {% endif %}
+{%- endmacro -%}
+
+{# Render a form for searching. #}
+{%- macro search(endpoint) -%}
+    {% call form_tag(endpoint, method='get') %}
+        <div class="input-group">
+            <input type="text"
+                   class="form-control"
+                   id="q"
+                   name="q"
+                   value="{{ request.args.get('q', '') }}"
+                   placeholder="Search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    {% endcall %}
 {%- endmacro -%}

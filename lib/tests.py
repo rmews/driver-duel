@@ -17,6 +17,7 @@ def assert_status_with_message(status_code=200, response=None, message=None):
     assert response.status_code == status_code
     assert message in str(response.data)
 
+
 class ViewTestMixin(object):
     """
     Automatically load in a session and client, this is common for a lot of

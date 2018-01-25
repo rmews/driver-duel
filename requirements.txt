@@ -21,6 +21,9 @@ celery==4.1.0
 Flask-WTF==0.14.2
 WTForms-Components==0.9.9
 
+# Utils.
+fake-factory==0.5.7
+
 # Extensions.
 flask-debugtoolbar==0.10.1
 Flask-Mail==0.9.1

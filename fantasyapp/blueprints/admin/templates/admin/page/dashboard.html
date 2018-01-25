@@ -1,0 +1,42 @@
+{% extends 'layouts/nav.html' %}
+
+{% block page_title %}Driver Duel Admin Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Adminstration Dashboard</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <a href="{{ url_for('admin.users') }}">Users</a>
+                                <span class="text-right text-muted">{{ group_and_count_users.total }}</span>
+                            </div>
+                            <div class="card-body">
+                                {% for item in group_and_count_users.query %}
+                                    {% set percent = ((item[0] / group_and_count_users.total) * 100) | round %}
+                                    <h5 class="card-title">{{ item[1] | title }}
+                                        <span class="text-muted">({{ item[0] }})</span>
+                                    </h5>
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                             role="progressbar"
+                                             aria-valuenow="{{ percent }}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"
+                                             style="width: {{ percent }}%;">{{ percent }}%
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,6 +2,7 @@ from flask import Flask
 from celery import Celery
 from itsdangerous import URLSafeTimedSerializer
 
+from fantasyapp.blueprints.admin import admin
 from fantasyapp.blueprints.page import page
 from fantasyapp.blueprints.contact import contact
 from fantasyapp.blueprints.user import user
@@ -61,6 +62,7 @@ def create_app(settings_override=None):
     if settings_override:
         app.config.update(settings_override)
 
+    app.register_blueprint(admin)
     app.register_blueprint(page)
     app.register_blueprint(contact)
     app.register_blueprint(user)
