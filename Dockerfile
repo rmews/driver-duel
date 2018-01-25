@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY . .
 RUN pip install --editable .
 
-CMD gunicorn -b 0.0.0.0:8000 --access-logfile - "fantasyapp.app:create_app()"
+CMD gunicorn -c "python:config.gunicorn" "fantasyapp.app:create_app()"
