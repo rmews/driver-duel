@@ -4,17 +4,23 @@ from flask import (
     request,
     flash,
     url_for,
-    render_template)
+    render_template
+)
+
 from flask_login import login_required, current_user
 from sqlalchemy import text
 
 from fantasyapp.blueprints.admin.models import Dashboard
 from fantasyapp.blueprints.user.decorators import role_required
 from fantasyapp.blueprints.user.models import User
+from fantasyapp.blueprints.game.models.driver import Driver
+from fantasyapp.blueprints.game.models.game import Game
+from config import settings
 from fantasyapp.blueprints.admin.forms import (
     SearchForm,
     BulkDeleteForm,
-    UserForm
+    UserForm,
+    UpdateGameForm
 )
 
 admin = Blueprint('admin', __name__,
@@ -33,9 +39,11 @@ def before_request():
 @admin.route('')
 def dashboard():
     group_and_count_users = Dashboard.group_and_count_users()
+    group_and_count_races = Dashboard.group_and_count_races()
 
     return render_template('admin/page/dashboard.html',
-                           group_and_count_users=group_and_count_users)
+                           group_and_count_users=group_and_count_users,
+                           group_and_count_races=group_and_count_races)
 
 
 # Users -----------------------------------------------------------------------
@@ -102,3 +110,42 @@ def users_bulk_delete():
         flash('No users were deleted, something went wrong.', 'danger')
 
     return redirect(url_for('admin.users'))
+
+
+# Games ---------------------------------------------------------------------
+@admin.route('/games/edit', methods=['GET', 'POST'])
+def games_edit():
+    form = UpdateGameForm()
+    form.driver.choices = [(row.id, row.name) for row in Driver.query.all()]
+    form.race.choices = [(key, value['name']) for key, value in settings.RACES.items()]
+
+    if form.validate_on_submit():
+        driver = int(request.form.get('driver'))
+        race = request.form.get('race')
+        laps_led = int(request.form.get('laps_led'))
+        fastest_laps = int(request.form.get('fastest_laps'))
+        differential = int(request.form.get('differential'))
+        finish = int(request.form.get('finish'))
+        points = Dashboard.calculate_points(laps_led, fastest_laps, differential, finish)
+
+        # Set game instance params
+        params = {
+            'laps_led': laps_led,
+            'fastest_laps': fastest_laps,
+            'differential': differential,
+            'finish': finish,
+            'total_points': points
+        }
+
+        # Save and commit the selected driver to game object
+        update_count = Game.bulk_update(driver, race, params)
+
+        if update_count:
+            flash('{0} games(s) were scheduled to be updated.'.format(update_count),
+                  'success')
+            return redirect(url_for('admin.games_edit'))
+        else:
+            flash('No games where updated', 'warning')
+            return redirect(url_for('admin.games_edit'))
+
+    return render_template('admin/game/update.html', form=form)

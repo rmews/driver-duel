@@ -99,6 +99,25 @@ class ResourceMixin(object):
 
         return delete_count
 
+    @classmethod
+    def bulk_update(cls, driver, race, params):
+        """
+        Update 1 or more model instances.
+
+        :param driver: selected driver to be updated
+        :type driver: int
+        :param race: race to be updated
+        :type race: str
+        :param params: List of data to be updated
+        :type params: list
+        :return: Number of updates instances
+        """
+        update_count = cls.query.filter(cls.selected_driver == driver) \
+                                .filter(cls.race == race).update(params)
+        db.session.commit()
+
+        return update_count
+
     def save(self):
         """
         Save a model instance.

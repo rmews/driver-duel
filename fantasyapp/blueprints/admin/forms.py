@@ -1,8 +1,8 @@
 from collections import OrderedDict
 
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, BooleanField
-from wtforms.validators import DataRequired, Length, Optional, Regexp
+from wtforms import SelectField, StringField, BooleanField, IntegerField
+from wtforms.validators import DataRequired, Length, Optional, Regexp, NumberRange, InputRequired
 from wtforms_components import Unique
 
 from lib.util_wtforms import ModelForm, choices_from_dict
@@ -40,3 +40,11 @@ class UserForm(ModelForm):
                        choices=choices_from_dict(User.ROLE,
                                                  prepend_blank=False))
     active = BooleanField('Yes, allow this user to sign in')
+
+class UpdateGameForm(FlaskForm):
+    driver = SelectField('Driver', [DataRequired()], coerce=int)
+    race = SelectField('Game', [DataRequired()])
+    laps_led = IntegerField('Laps Led', [InputRequired(), NumberRange(min=0, max=500)])
+    fastest_laps = IntegerField('Fastest Laps', [InputRequired(), NumberRange(min=0, max=500)])
+    differential = IntegerField('Differential', [InputRequired(), NumberRange(min=-40, max=40)])
+    finish = IntegerField('Finish', [InputRequired(), NumberRange(min=0, max=40)])

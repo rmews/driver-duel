@@ -1,0 +1,41 @@
+{% import 'macros/form.html' as f with context %}
+
+<div class="container">
+    {% call f.form_tag('admin.games_edit') %}
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4">
+                {% call f.form_group(form.driver) %}
+                {% endcall %}
+            </div>
+            <div class="col-lg-4">
+                {% call f.form_group(form.race) %}
+                {% endcall %}
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4">
+                {% call f.form_group(form.laps_led) %}
+                {% endcall %}
+            </div>
+            <div class="col-lg-4">
+                {% call f.form_group(form.fastest_laps) %}
+                {% endcall %}
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4">
+                {% call f.form_group(form.differential) %}
+                {% endcall %}
+            </div>
+            <div class="col-lg-4">
+                {% call f.form_group(form.finish) %}
+                {% endcall %}
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </div>
+        </div>
+    {% endcall %}
+</div>

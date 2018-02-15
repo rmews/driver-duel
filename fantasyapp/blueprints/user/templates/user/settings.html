@@ -1,14 +1,49 @@
 {% extends 'layouts/nav.html' %}
 
-{% block page_title %}Account settings{% endblock %}
+{% block page_title %}Account Settings{% endblock %}
 
 {% block body %}
-    <h2>Settings</h2>
-    <h4 class="text-muted margin-bottom">{{ current_user.email }}</h4>
-    <a href="{{ url_for('user.update_credentials') }}">Update email and password</a>
-    {% if current_user.username %}
-        <span>Your username is <strong>{{ current_user.username }}</strong></span>
-    {% else %}
-        <a href="{{ url_for('user.welcome') }}">Pick a username</a>
-    {% endif %}
+    <div class="container mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header text-white"><h3>My Account</h3></div>
+                    <div class="card-body">
+                        <!-- Account Summary Section -->
+                        <div class="card">
+                            <div class="card-body d-flex align-items-end p-2 m-2">
+                                <i class="fas fa-user fa-2x ml-4 mr-4"></i>
+                                {% if current_user.username %}
+                                    <h5 class="mb-0">{{ current_user.username }}</h5>
+                                {% else %}
+                                    <p class="mb-0">
+                                        <a href="{{ url_for('user.welcome') }}">Pick a username</a>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Pesonal Information -->
+                        <h6 class="mt-4">Personal Information</h6>
+                        <div class="card">
+                            <div class="card-body d-flex ml-4 mt-2 pb-0">
+                                <h6>Email:</h6>
+                            </div>
+                            <div class="card-body d-flex pt-0 ml-4">
+                                <h5 class="mb-0">{{ current_user.email }}</h5>
+                                <a href="{{ url_for('user.update_credentials') }}"
+                                   class="pl-5">Edit</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body d-flex ml-4">
+                                <h6 class="mb-0">Password</h6>
+                                <a href="{{ url_for('user.update_credentials') }}"
+                                   class="pl-5">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

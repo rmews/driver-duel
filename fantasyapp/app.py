@@ -11,13 +11,15 @@ from fantasyapp.blueprints.admin import admin
 from fantasyapp.blueprints.page import page
 from fantasyapp.blueprints.contact import contact
 from fantasyapp.blueprints.user import user
+from fantasyapp.blueprints.game import game
 from fantasyapp.blueprints.user.models import User
 from fantasyapp.extensions import (
     debug_toolbar,
     mail,
     csrf,
     db,
-    login_manager
+    login_manager,
+    limiter
 )
 
 CELERY_TASK_LIST = [
@@ -67,8 +69,6 @@ def create_app(settings_override=None):
     if settings_override:
         app.config.update(settings_override)
 
-    app.logger.setLevel(app.config['LOG_LEVEL'])
-
     middleware(app)
     error_templates(app)
     exception_handler(app)
@@ -76,6 +76,7 @@ def create_app(settings_override=None):
     app.register_blueprint(page)
     app.register_blueprint(contact)
     app.register_blueprint(user)
+    app.register_blueprint(game)
     extensions(app)
     authentication(app, User)
 
@@ -94,6 +95,7 @@ def extensions(app):
     csrf.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    limiter.init_app(app)
 
     return None
 

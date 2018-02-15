@@ -1,0 +1,70 @@
+{% extends 'layouts/nav.html' %}
+{% import 'macros/items.html' as items %}
+
+{% block page_title %}Game History{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+                {% if current_user.games %}
+                <div class="row">
+                    <div class="col-lg-12 pb-3">
+                        <h5>Your Game History</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Table to list all users games -->
+                    <div class="col table-responsive">
+                        <table class="table table-hover sortable">
+                            <thead>
+                                <tr>
+                                    <th class="col-header">
+                                        {{ items.sort('race', 'Race #') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('selected_driver', 'Driver') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('laps_led', 'Laps Led') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('fastest_laps', 'Fastest Laps') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('finish', 'Finish') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('differential', 'Pos +/-') }}
+                                    </th>
+                                    <th class="col-header">
+                                        {{ items.sort('total_points', 'Total Points') }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for game in games %}
+                                    <tr>
+                                        <td>{{ game.race }}</td>
+                                        <td>
+                                            {% for driver in drivers %}
+                                                {% if game.selected_driver == driver.id %}
+                                                    {{ driver.name }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{ game.laps_led }}</td>
+                                        <td>{{ game.fastest_laps }}</td>
+                                        <td>{{ game.finish }}</td>
+                                        <td>{{ game.differential }}</td>
+                                        <td>{{ game.total_points }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

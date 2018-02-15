@@ -14,6 +14,9 @@ from flask_login import (
 from lib.safe_next_url import safe_next_url
 from fantasyapp.blueprints.user.decorators import anonymous_required
 from fantasyapp.blueprints.user.models import User
+from fantasyapp.blueprints.game.models.game import Game
+from fantasyapp.blueprints.game.models.driver import Driver
+from config import settings
 from fantasyapp.blueprints.user.forms import (
     LoginForm,
     BeginPasswordResetForm,
@@ -147,6 +150,7 @@ def welcome():
 @user.route('/settings')
 @login_required
 def settings():
+
     return render_template('user/settings.html')
 
 

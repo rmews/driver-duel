@@ -19,7 +19,7 @@
                     <ul class="navbar-nav mt-2 mt-md-0">
                         {% if current_user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('page.how_to_play') }}">How To Play</a>
+                                <a class="nav-link" href="{{ url_for('game.play_game') }}">Play</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Leaderboard</a>
@@ -34,6 +34,9 @@
                                    aria-expanded="false">Account</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url_for('user.settings') }}">Settings</a>
+                                    {% if current_user.games %}
+                                        {% include 'game/_menu.html' %}
+                                    {% endif %}
                                     {% if current_user.role == 'admin' %}
                                         {% include 'admin/_menu.html' %}
                                     {% endif %}

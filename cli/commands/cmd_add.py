@@ -7,6 +7,7 @@ from faker import Faker
 from fantasyapp.app import create_app
 from fantasyapp.extensions import db
 from fantasyapp.blueprints.user.models import User
+from fantasyapp.blueprints.game.models.driver import Driver
 
 # Create an app context for the database connection.
 app = create_app()
@@ -136,6 +137,55 @@ def users():
 
 
 @click.command()
+def drivers():
+    """
+    Generate fake drivers.
+    """
+    random_drivers = []
+    data = []
+
+    click.echo('Working...')
+
+    # Ensure we get about 40 unique random drivers.
+    for i in range(0, 50):
+        random_drivers.append(fake.name())
+
+    random_drivers = list(set(random_drivers))
+
+    while True:
+        if len(random_drivers) == 0:
+            break
+
+        fake_datetime = fake.date_time_between(
+            start_date='-1y', end_date='now').strftime('%s')
+
+        created_on = datetime.utcfromtimestamp(
+            float(fake_datetime)).strftime('%Y-%m-%dT%H:%M:%S Z')
+
+        random_percent = random.random()
+
+        if random_percent >= 0.05:
+            active = '1'
+        else:
+            active = '0'
+
+        name = random_drivers.pop()
+        picture = ''
+
+        params = {
+            'created_on': created_on,
+            'updated_on': created_on,
+            'name': name,
+            'active': active,
+            'picture': picture
+        }
+
+        data.append(params)
+
+    return _bulk_insert(Driver, data, 'drivers')
+
+
+@click.command()
 @click.pass_context
 def all(ctx):
     """
@@ -144,10 +194,11 @@ def all(ctx):
     :param ctx:
     :return: None
     """
+    ctx.invoke(drivers)
     ctx.invoke(users)
 
     return None
 
-
+cli.add_command(drivers)
 cli.add_command(users)
 cli.add_command(all)

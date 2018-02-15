@@ -13,6 +13,7 @@ from itsdangerous import URLSafeTimedSerializer, \
     TimedJSONWebSignatureSerializer
 
 from lib.util_sqlalchemy import ResourceMixin, AwareDateTime
+from fantasyapp.blueprints.game.models.game import Game
 from fantasyapp.extensions import db
 
 
@@ -24,6 +25,9 @@ class User(UserMixin, ResourceMixin, db.Model):
 
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+
+    # Relationships.
+    games = db.relationship(Game, backref='users', passive_deletes=True)
 
     # Authentication.
     role = db.Column(db.Enum(*ROLE,
@@ -47,6 +51,9 @@ class User(UserMixin, ResourceMixin, db.Model):
     password = db.Column(db.String(128),
                          nullable=False,
                          server_default='')
+
+    # Game.
+    last_game_on = db.Column(AwareDateTime())
 
     # Activity tracking.
     sign_in_count = db.Column(db.Integer,
