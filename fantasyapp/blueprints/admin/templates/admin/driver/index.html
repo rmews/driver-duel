@@ -1,0 +1,119 @@
+{% extends 'layouts/nav.html' %}
+{% import 'macros/items.html' as items %}
+{% import 'macros/form.html' as f with context %}
+
+{% block page_title %}Driver Duel Admin Dashboard - Drivers{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <!-- Search -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8 col-10">
+                        {{ f.search('admin.drivers') }}
+                    </div>
+                </div>
+                <br>
+                <a href="{{ url_for('admin.drivers_new') }}">Add New Driver</a>
+
+                <!-- Search Results -->
+                {% if drivers.total == 0 %}
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8 col-10">
+                            <br>
+                            <h3>No results found</h3>
+                        </div>
+                    </div>
+                    {% if request.args.get('q') %}
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8 col-10">
+                                <p>Try limiting or removing your search terms.</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>There are no drivers present.</p>
+                    {% endif %}
+                {% else %}
+                    {% call f.form_tag('admin.drivers_bulk_delete') %}
+
+                    <!-- Dropdown that allows bulk delete of selected table rows -->
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-8">
+                            <h3>Update Drivers</h3>
+                            <div class="input-group" id="bulk_actions">
+                                    {{ f.drop_down(bulk_form.scope, inline=True) }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Table to list all drivers -->
+                    <div class="row">
+                        <div class="col table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label for="select_all"></label>
+                                            <input id="select_all" name="select_all" type="checkbox">
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('name') }}
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('active', 'Active') }}
+                                        </th>
+                                        <th class="col-header">
+                                            {{ items.sort('picture', 'Photo') }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for driver in drivers.items %}
+                                    <tr>
+                                        <td>
+                                            <label for="bulk_ids"></label>
+                                                <input class="checkbox-item"
+                                                       id="bulk_ids"
+                                                       name="bulk_ids"
+                                                       type="checkbox"
+                                                       value="{{ driver.id }}">
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('admin.drivers_edit', id=driver.id) }}">
+                                                <p class="text-muted">{{ driver.name }}</p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if driver.active == True %}
+                                                Active
+                                            {% else %}
+                                                Inactive
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if driver.picture %}
+                                                <img src="{{ url_for('static', filename=driver.picture) }}" class="img-fluid" id="driver-grid-img"></td>
+                                            {% else %}
+                                                <p class="text-muted">No Picture</p>
+                                            {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endcall %}
+
+                    <!-- pagination -->
+                    {{ items.paginate(drivers) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

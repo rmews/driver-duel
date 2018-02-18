@@ -1,0 +1,51 @@
+{% import 'macros/form.html' as f with context %}
+
+{% if request.endpoint.endswith('new') %}
+    {% set endpoint = 'admin.drivers_new' %}
+    {% set form_kwargs = {'enctype': 'multipart/form-data'} %}
+    {% set legend = 'Add Driver' %}
+    {% set button = 'Add' %}
+{% else %}
+    {% set endpoint = 'admin.drivers_edit' %}
+    {% set form_kwargs = {'id': driver.id, 'enctype': 'multipart/form-data'} %}
+    {% set legend = 'Update Driver' %}
+    {% set button = 'Save' %}
+{% endif %}
+
+<div class="container">
+    <div class="row d-flex justify-content-around">
+        <div class="col-md-6">
+            <h3>{{ legend }}</h3>
+            {% call f.form_tag(endpoint, **form_kwargs) %}
+
+                {% call f.form_group(form.name,
+                                     css_class='mb-4',
+                                     autofocus='autofocus') %}
+                {% endcall %}
+
+                {% call f.form_group(form.active,
+                                     css_class='mb-4') %}
+                {% endcall %}
+
+                {% call f.form_group(form.picture,
+                                     css_class='mb-4') %}
+                {% endcall %}
+
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        {{ button }}
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="visible-xs visible-sm sm-margin-top"></div>
+                        <a href="{{ url_for('admin.drivers') }}"
+                           class="btn btn-default btn-block">Cancel
+                        </a>
+                </div>
+            </div>
+        {% endcall %}
+        </div>
+    </div>
+</div>

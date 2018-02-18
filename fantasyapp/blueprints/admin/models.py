@@ -3,6 +3,7 @@ from sqlalchemy import func
 
 from fantasyapp.blueprints.user.models import db, User
 from fantasyapp.blueprints.game.models.game import Game
+from fantasyapp.blueprints.game.models.driver import Driver
 from config import settings
 
 
@@ -24,6 +25,15 @@ class Dashboard(object):
         :return: dict
         """
         return Dashboard._group_and_count(Game, Game.race)
+
+    @classmethod
+    def group_and_count_drivers(cls):
+        """
+        Perform a group by/count on all drivers.
+
+        :return: dict
+        """
+        return Dashboard._group_and_count(Driver, Driver.active)
 
     @classmethod
     def _group_and_count(cls, model, field):

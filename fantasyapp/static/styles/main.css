@@ -156,6 +156,10 @@ a.logo:hover, a.logo:active, a.logo:focus {
     background-color: #435F96 !important;
 }
 
+#driver-grid-img {
+    height: 3rem !important;
+}
+
 
 /********** Forms **********/
 

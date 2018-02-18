@@ -1,12 +1,27 @@
 from collections import OrderedDict
 
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, BooleanField, IntegerField
-from wtforms.validators import DataRequired, Length, Optional, Regexp, NumberRange, InputRequired
+from wtforms import (
+    SelectField,
+    StringField,
+    BooleanField,
+    IntegerField
+)
+from wtforms.validators import (
+    DataRequired,
+    Length,
+    Optional,
+    Regexp,
+    NumberRange,
+    InputRequired
+)
+
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms_components import Unique
 
 from lib.util_wtforms import ModelForm, choices_from_dict
 from fantasyapp.blueprints.user.models import db, User
+from fantasyapp.blueprints.game.models.driver import Driver
 
 
 class SearchForm(FlaskForm):
@@ -40,6 +55,22 @@ class UserForm(ModelForm):
                        choices=choices_from_dict(User.ROLE,
                                                  prepend_blank=False))
     active = BooleanField('Yes, allow this user to sign in')
+
+
+class DriverForm(ModelForm):
+    name_message = 'Letters only please.'
+
+    name = StringField(validators=[Unique(Driver.name,
+                                          get_session=lambda: db.session),
+                                   DataRequired(),
+                                   Length(1, 50),
+                                   Regexp('[^a-zA-Z]*', message=name_message)])
+
+    picture = FileField('Image', validators=[FileAllowed(['jpg', 'png', 'jpeg']),
+                                             DataRequired()])
+
+    active = BooleanField('Yes, this driver is active')
+
 
 class UpdateGameForm(FlaskForm):
     driver = SelectField('Driver', [DataRequired()], coerce=int)

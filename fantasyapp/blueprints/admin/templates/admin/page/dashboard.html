@@ -8,9 +8,9 @@
             <div class="col">
                 <h3>Adminstration Dashboard</h3>
                 <div class="row">
+                    <!-- Games -->
                     <div class="col-lg-4">
                         <br>
-                        <!-- Games -->
                         <div class="card">
                             <div class="card-header">
                                 <a href="{{ url_for('admin.games_edit') }}"
@@ -25,9 +25,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Users -->
                     <div class="col-lg-4">
                         <br>
-                        <!-- Users -->
                         <div class="card">
                             <div class="card-header">
                                 <a href="{{ url_for('admin.users') }}"
@@ -40,6 +40,41 @@
                                     <h5 class="card-title">{{ item[1] | title }}
                                         <span class="text-muted">({{ item[0] }})</span>
                                     </h5>
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                             role="progressbar"
+                                             aria-valuenow="{{ percent }}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"
+                                             style="width: {{ percent }}%;">{{ percent }}%
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Drivers -->
+                    <div class="col-lg-4">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <a href="{{ url_for('admin.drivers') }}"
+                                   class="text-white">Drivers</a>
+                                <span class="float-right text-warning">{{ group_and_count_drivers.total }}</span>
+                            </div>
+                            <div class="card-body">
+                                {% for item in group_and_count_drivers.query %}
+                                {% set percent = ((item[0] / group_and_count_drivers.total) * 100) | round %}
+                                    {% if item[1] == True %}
+                                        <h5 class="card-title">Active Drivers
+                                            <span class="text-muted">({{ item[0] }})</span>
+                                        </h5>
+                                    {% else %}
+                                        <h5 class="card-title">Inactive Drivers
+                                            <span class="text-muted">({{ item[0] }})</span>
+                                        </h5>
+                                    {% endif %}
                                     <div class="progress">
                                         <div class="progress-bar"
                                              role="progressbar"

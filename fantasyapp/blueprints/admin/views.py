@@ -1,14 +1,19 @@
+import os
 from flask import (
     Blueprint,
     redirect,
     request,
     flash,
     url_for,
-    render_template
+    render_template,
+    current_app,
+    send_from_directory
 )
 
 from flask_login import login_required, current_user
 from sqlalchemy import text
+
+from werkzeug.utils import secure_filename
 
 from fantasyapp.blueprints.admin.models import Dashboard
 from fantasyapp.blueprints.user.decorators import role_required
@@ -20,6 +25,7 @@ from fantasyapp.blueprints.admin.forms import (
     SearchForm,
     BulkDeleteForm,
     UserForm,
+    DriverForm,
     UpdateGameForm
 )
 
@@ -40,10 +46,12 @@ def before_request():
 def dashboard():
     group_and_count_users = Dashboard.group_and_count_users()
     group_and_count_races = Dashboard.group_and_count_races()
+    group_and_count_drivers = Dashboard.group_and_count_drivers()
 
     return render_template('admin/page/dashboard.html',
                            group_and_count_users=group_and_count_users,
-                           group_and_count_races=group_and_count_races)
+                           group_and_count_races=group_and_count_races,
+                           group_and_count_drivers=group_and_count_drivers)
 
 
 # Users -----------------------------------------------------------------------
@@ -149,3 +157,95 @@ def games_edit():
             return redirect(url_for('admin.games_edit'))
 
     return render_template('admin/game/update.html', form=form)
+
+
+# Drivers ---------------------------------------------------------------------
+@admin.route('/drivers', defaults={'page': 1})
+@admin.route('/drivers/page/<int:page>')
+def drivers(page):
+    search_form = SearchForm()
+    bulk_form = BulkDeleteForm()
+
+    sort_by = Driver.sort_by(request.args.get('sort', 'name'),
+                             request.args.get('direction', 'asc'))
+    order_values = '{0} {1}'.format(sort_by[0], sort_by[1])
+
+    paginated_drivers = Driver.query.filter(Driver.search(request.args.get('q', ''))) \
+                                    .order_by(Driver.name.asc(), text(order_values)) \
+                                    .paginate(page, 50, True)
+
+    return render_template('admin/driver/index.html',
+                           form=search_form,
+                           bulk_form=bulk_form,
+                           drivers=paginated_drivers)
+
+
+@admin.route('/drivers/edit/<int:id>', methods=['GET', 'POST'])
+def drivers_edit(id):
+    driver = Driver.query.get(id)
+    form = DriverForm(obj=driver)
+
+    if form.validate_on_submit():
+        if form.picture.data is not "":
+            filename = secure_filename(form.picture.data.filename)
+            file_dest = (os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file_path = (os.path.join(current_app.config['IMAGE_URL'], filename))
+            form.picture.data.save(file_dest)
+
+        driver.name = form.name.data
+        driver.active = form.active.data
+        driver.picture = file_path if form.picture.data else None
+
+        if driver.save():
+            flash('Driver has been updated successfully.', 'success')
+            return redirect(url_for('admin.drivers'))
+        else:
+            return redirect(url_for('admin.drivers_edit'))
+
+    return render_template('admin/driver/edit.html', form=form, driver=driver)
+
+
+@admin.route('/drivers/new', methods=['GET', 'POST'])
+def drivers_new():
+    driver = Driver()
+    form = DriverForm()
+
+    if form.validate_on_submit():
+        if form.picture.data is not "":
+            filename = secure_filename(form.picture.data.filename)
+            file_dest = (os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file_path = (os.path.join(current_app.config['IMAGE_URL'], filename))
+            form.picture.data.save(file_dest)
+
+        driver = Driver(
+            name=form.name.data,
+            active=form.active.data,
+            picture=file_path if form.picture.data else None,
+        )
+
+        if driver.save():
+            flash('Driver has been created successfully.', 'success')
+            return redirect(url_for('admin.drivers'))
+        else:
+            return redirect(url_for('admin.drivers_new'))
+
+    return render_template('admin/driver/new.html', form=form, driver=driver)
+
+
+@admin.route('/drivers/bulk_delete', methods=['POST'])
+def drivers_bulk_delete():
+    form = BulkDeleteForm()
+
+    if form.validate_on_submit():
+        ids = Driver.get_bulk_action_ids(request.form.get('scope'),
+                                         request.form.getlist('bulk_ids'),
+                                         query=request.args.get('q', ''))
+
+        delete_count = Driver.bulk_delete(ids)
+
+        flash('{0} driver(s) were scheduled to be deleted.'.format(delete_count),
+              'success')
+    else:
+        flash('No drivers were deleted, something went wrong.', 'danger')
+
+    return redirect(url_for('admin.drivers'))

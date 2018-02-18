@@ -36,10 +36,16 @@ SEED_ADMIN_EMAIL = 'dev@local.host'
 SEED_ADMIN_PASSWORD = 'devpassword'
 REMEMBER_COOKIE_DURATION = timedelta(days=90)
 
+# Images.
+UPLOAD_FOLDER = 'fantasyapp/static/images/drivers'
+IMAGE_URL = 'images/drivers'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
 # Add Payouts Here Later.
 GAME_PAYOUT = {}
 LEADERBOARD_PAYOUT = {}
 
+# Game Scoring.
 POINTS_FINISH = {
     '1': 40,
     '2': 39,
