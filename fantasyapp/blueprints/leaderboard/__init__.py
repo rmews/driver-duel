@@ -1,0 +1,1 @@
+from fantasyapp.blueprints.leaderboard.views import leaderboard

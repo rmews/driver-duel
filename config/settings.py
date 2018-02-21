@@ -143,6 +143,12 @@ RACES = {
         'start_time': datetime.datetime(2018, 2, 9, 5, 30, tzinfo=utc),
         'end_time': datetime.datetime(2018, 2, 9, 5, 39, 59, tzinfo=utc),
     },
+    '8': {
+        'id': 'race_8',
+        'name': 'Hello World6',
+        'start_time': datetime.datetime(2018, 2, 21, 6, 30, tzinfo=utc),
+        'end_time': datetime.datetime(2018, 2, 21, 6, 39, 59, tzinfo=utc),
+    },
 
 }
 

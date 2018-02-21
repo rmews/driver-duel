@@ -1,0 +1,73 @@
+{% extends 'layouts/nav.html' %}
+
+{% block page_title %}Race Leaderboard{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+                {% if game %}
+                {% for g in game %}
+                    <div class="row">
+                        <div class="col-lg-12 pb-3">
+                            {% for race in races %}
+                                {% if race[0] == g.race %}
+                                    <h3>{{ race[1] }} Leaderboard</h3>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="row">
+                    <!-- Table to list leaders -->
+                    <div class="col table-responsive">
+                        <table class="table table-hover sortable">
+                            <thead>
+                                <tr>
+                                    <th class="col-header">Rank</th>
+                                    <th class="col-header">Player</th>
+                                    <th class="col-header">Laps Led</th>
+                                    <th class="col-header">Fastest Laps</th>
+                                    <th class="col-header">Pos +/-</th>
+                                    <th class="col-header">Total Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% set cnt = [0] %}
+                                {% for g in game %}
+                                    {% if cnt.append(cnt.pop() + 1) %}{% endif %}
+                                    <tr>
+                                        <td>{{ cnt[0] }}</td>
+                                        <td>
+                                            {% for user in users %}
+                                                {% if user.id == g.user_id %}
+                                                    {% if user.username %}
+                                                        {{ user.username }}
+                                                    {% else %}
+                                                        Unknown Player
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{ g.laps_led }}</td>
+                                        <td>{{ g.fastest_laps }}</td>
+                                        <td>{{ g.differential }}</td>
+                                        <td>{{ g.total_points }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% else %}
+                    <div class="row">
+                        <h2>Play Today to Rank Up</h2>
+                        <div class="divider"></div>
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Continue</button>
+                        <a class="btn btn-primary btn-lg mb-4" href="{{ url_for('game.play_game') }}" role="button">Play</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

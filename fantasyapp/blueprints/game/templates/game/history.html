@@ -19,27 +19,13 @@
                         <table class="table table-hover sortable">
                             <thead>
                                 <tr>
-                                    <th class="col-header">
-                                        {{ items.sort('race', 'Race #') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('selected_driver', 'Driver') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('laps_led', 'Laps Led') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('fastest_laps', 'Fastest Laps') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('finish', 'Finish') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('differential', 'Pos +/-') }}
-                                    </th>
-                                    <th class="col-header">
-                                        {{ items.sort('total_points', 'Total Points') }}
-                                    </th>
+                                    <th class="col-header">Race #</th>
+                                    <th class="col-header">Driver</th>
+                                    <th class="col-header">Laps Led</th>
+                                    <th class="col-header">Fastest Laps</th>
+                                    <th class="col-header">Finish</th>
+                                    <th class="col-header">Pos +/-</th>
+                                    <th class="col-header">Total Points</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,7 +50,8 @@
                         </table>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

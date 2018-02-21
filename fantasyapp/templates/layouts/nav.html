@@ -22,7 +22,7 @@
                                 <a class="nav-link" href="{{ url_for('game.play_game') }}">Play</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Leaderboard</a>
+                                <a class="nav-link" href="{{ url_for('leaderboard.season_rank') }}">Leaderboard</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle"
@@ -45,10 +45,7 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('page.how_to_play') }}">How To Play</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Leaderboard</a>
+                                <a class="nav-link" href="{{ url_for('leaderboard.season_rank') }}">Leaderboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('user.login') }}">Log In</a>

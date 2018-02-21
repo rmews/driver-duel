@@ -12,6 +12,7 @@ from fantasyapp.blueprints.page import page
 from fantasyapp.blueprints.contact import contact
 from fantasyapp.blueprints.user import user
 from fantasyapp.blueprints.game import game
+from fantasyapp.blueprints.leaderboard import leaderboard
 from fantasyapp.blueprints.user.models import User
 from fantasyapp.extensions import (
     debug_toolbar,
@@ -77,6 +78,7 @@ def create_app(settings_override=None):
     app.register_blueprint(contact)
     app.register_blueprint(user)
     app.register_blueprint(game)
+    app.register_blueprint(leaderboard)
     extensions(app)
     authentication(app, User)
 

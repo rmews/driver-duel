@@ -1,0 +1,79 @@
+{% extends 'layouts/nav.html' %}
+
+{% block page_title %}Driver Duel Leaderboard{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+                {% if games %}
+                <div class="row d-flex justify-content-between">
+                    <div class="col-lg-9 pb-3">
+                        <h3>Overall Leaderboard</h3>
+                    </div>
+                    <div class="col-lg-3 pb-3">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="WeeklyLeaderboard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                View Weekly Leaders
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="WeeklyLeaderboard">
+                                {% for race in races %}
+                                    <a class="dropdown-item" href="{{ url_for('leaderboard.weekly_rank', id=race[0]) }}">{{ race[1] }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Table to list leaders -->
+                    <div class="col table-responsive">
+                        <table class="table table-hover sortable">
+                            <thead>
+                                <tr>
+                                    <th class="col-header">Rank</th>
+                                    <th class="col-header">Player</th>
+                                    <th class="col-header">Laps Led</th>
+                                    <th class="col-header">Fastest Laps</th>
+                                    <th class="col-header">Pos +/-</th>
+                                    <th class="col-header">Total Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% set cnt = [0] %}
+                                {% for game in games %}
+                                    {% if cnt.append(cnt.pop() + 1) %}{% endif %}
+                                    <tr>
+                                        <td>{{ cnt[0] }}</td>
+                                        <td>
+                                            {% for user in users %}
+                                                {% if user.id == game.user_id %}
+                                                    {% if user.username %}
+                                                        {{ user.username }}
+                                                    {% else %}
+                                                        Unknown Player
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{ game.laps_led }}</td>
+                                        <td>{{ game.fastest_laps }}</td>
+                                        <td>{{ game.differential }}</td>
+                                        <td>{{ game.total_points }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% else %}
+                    <div class="row">
+                        <h2>Play Today to Rank Up</h2>
+                        <div class="divider"></div>
+                        <button type="submit" class="btn btn-primary btn-lg mb-4">Continue</button>
+                        <a class="btn btn-primary btn-lg mb-4" href="{{ url_for('game.play_game') }}" role="button">Play</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

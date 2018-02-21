@@ -1,4 +1,16 @@
-/********** Global Styles **********/
+/* Global Styles
+-------------------------------------------------- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
 
 body {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6,6 +18,10 @@ body {
     background-color: #D3D1D9;
     color: #282929;
     padding-top: 5rem;
+    position: relative;
+    margin: 0;
+    padding-bottom: 13rem;
+    min-height: 100%;
 }
 
 h1 {
@@ -57,7 +73,8 @@ a {
 }
 
 
-/********** Nav Styles **********/
+/* Nav Styles
+-------------------------------------------------- */
 
 .navbar-custom {
     background: #2D3B60;
@@ -76,7 +93,94 @@ a.logo:hover, a.logo:active, a.logo:focus {
 }
 
 
-/********** Homepage Styles **********/
+/* Footer
+-------------------------------------------------- */
+
+.footer {
+    background: #282929;
+    width: 100%;
+    color: #46484a;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.footer .container-fluid {
+    padding: 0;
+}
+
+.footer .divider {
+    width: 100%;
+    height: .1rem;
+    margin: .5rem 0 1.5rem 0;
+}
+
+.footer .nav-footer {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer .nav-footer .nav-link {
+    color: #696b6e;
+}
+
+.footer .nav-footer .nav-link:hover {
+    color: #439DC1;
+}
+
+.footer .social li a {
+    background: none;
+    border: none;
+}
+
+.nav-footer {
+    list-style: none;
+    float: right;
+}
+
+.nav-footer li {
+    float: left;
+    margin-top: .5rem;
+}
+
+.social {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.social li {
+    display: inline-block;
+}
+
+.social li a {
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin: .4rem .1rem;
+    text-align: center;
+    text-decoration: none;
+    background: #fff;
+    color: #696b6e;
+    border: 0.1rem solid #dfe1e5;
+    border-radius: 499rem;
+    line-height: 1.5;
+    font-size: 1.4rem;
+}
+
+.social li a:hover {
+    color: #439DC1;
+    border-color: #439DC1;
+}
+
+
+/* Homepage Styles
+-------------------------------------------------- */
 
 .cover {
     background: #2D3B60 center;
@@ -150,7 +254,8 @@ a.logo:hover, a.logo:active, a.logo:focus {
 }
 
 
-/********** Cards **********/
+/* Cards
+-------------------------------------------------- */
 
 .card-header {
     background-color: #435F96 !important;
@@ -161,7 +266,8 @@ a.logo:hover, a.logo:active, a.logo:focus {
 }
 
 
-/********** Forms **********/
+/* Forms
+-------------------------------------------------- */
 
 .form-control-custom {
     border: 0.1rem solid #dfe1e5;
@@ -191,7 +297,8 @@ a.logo:hover, a.logo:active, a.logo:focus {
 }
 
 
-/********** Flash Message Styles **********/
+/* Flash Message Styles
+-------------------------------------------------- */
 
 .flash-messages {
     margin-top: -1rem;
@@ -204,88 +311,8 @@ a.logo:hover, a.logo:active, a.logo:focus {
 }
 
 
-/********** Footer **********/
-
-.footer {
-    background: #282929;
-    width: 100%;
-    color: #46484a;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    padding-bottom: .5rem;
-}
-
-.footer .container-fluid {
-    padding: 0;
-}
-
-.footer .divider {
-    width: 100%;
-    height: .1rem;
-    margin: .5rem 0 1.5rem 0;
-}
-
-.footer .nav-footer {
-    width: 100%;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-.footer .nav-footer .nav-link {
-    color: #696b6e;
-}
-
-.footer .nav-footer .nav-link:hover {
-    color: #439DC1;
-}
-
-.footer .social li a {
-    background: none;
-    border: none;
-}
-
-.nav-footer {
-    list-style: none;
-    float: right;
-}
-
-.nav-footer li {
-    float: left;
-    margin-top: .5rem;
-}
-
-.social {
-    margin: 0 auto;
-    padding: 0;
-}
-
-.social li {
-    display: inline-block;
-}
-
-.social li a {
-    display: block;
-    width: 2.2rem;
-    height: 2.2rem;
-    margin: .4rem .1rem;
-    text-align: center;
-    text-decoration: none;
-    background: #fff;
-    color: #696b6e;
-    border: 0.1rem solid #dfe1e5;
-    border-radius: 499rem;
-    line-height: 1.5;
-    font-size: 1.4rem;
-}
-
-.social li a:hover {
-    color: #439DC1;
-    border-color: #439DC1;
-}
-
-
-/********** Button Styles **********/
+/* Button Styles
+-------------------------------------------------- */
 
 .btn-lg {
     padding: 1.1rem 2.5rem;
@@ -296,8 +323,6 @@ li.nav-item .btn {
     margin-top: .2rem;
     margin-left: .4rem;
 }
-
-/* Pills are for main calls to action */
 
 .pill-btn {
     border-radius: 499rem !important;
@@ -326,8 +351,6 @@ li.nav-item .btn {
     color: #FDFDFD !important;
 }
 
-/* Regular old buttons */
-
 .btn-primary, .btn-success, .btn-outline-primary, .btn-outline-secondary, .btn-outline-success {
     font-size: .75rem;
     text-transform: uppercase;
@@ -343,6 +366,18 @@ li.nav-item .btn {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background-color: #2D3B60 !important;
     border-color: #2D3B60 !important;
+}
+
+.btn-secondary {
+    border-color: #7B90A6;
+    background-color: #7B90A6;
+    color: #fff;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+    border-color: #46484a;
+    background-color: #46484a;
+    color: #fff;
 }
 
 .btn-outline-primary, .btn-outline-secondary, .btn-outline-success {
@@ -362,7 +397,8 @@ li.nav-item .btn {
 }
 
 
-/*********** Link Styles **********/
+/* Link Styles
+-------------------------------------------------- */
 
 .link-white, link-white:visited {
     font-size: .75rem;
@@ -378,7 +414,8 @@ li.nav-item .btn {
 }
 
 
-/********** Media Queries **********/
+/* Media Queries
+-------------------------------------------------- */
 
 @media screen and (max-width: 768px) {
     .nav-footer {
