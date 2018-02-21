@@ -146,10 +146,21 @@ RACES = {
     '8': {
         'id': 'race_8',
         'name': 'Hello World6',
-        'start_time': datetime.datetime(2018, 2, 21, 6, 30, tzinfo=utc),
-        'end_time': datetime.datetime(2018, 2, 21, 6, 39, 59, tzinfo=utc),
+        'start_time': datetime.datetime(2018, 2, 21, 5, 30, tzinfo=utc),
+        'end_time': datetime.datetime(2018, 2, 21, 5, 34, 59, tzinfo=utc),
     },
-
+    '9': {
+        'id': 'race_9',
+        'name': 'Hello World7',
+        'start_time': datetime.datetime(2018, 2, 21, 5, 35, tzinfo=utc),
+        'end_time': datetime.datetime(2018, 2, 21, 5, 39, 59, tzinfo=utc),
+    },
+    '10': {
+        'id': 'race_10',
+        'name': 'Hello World8',
+        'start_time': datetime.datetime(2018, 2, 21, 5, 40, tzinfo=utc),
+        'end_time': datetime.datetime(2018, 2, 21, 5, 44, 59, tzinfo=utc),
+    }
 }
 
 # RACES = {
