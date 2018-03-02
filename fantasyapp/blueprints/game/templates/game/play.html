@@ -4,48 +4,47 @@
 {% block page_title %}Play Driver Duel{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container pt-4 pb-5 mb-5">
         <!-- Show drivers in cards if player started -->
         {% if player_started == True %}
             <div class="row d-flex align-items-center justify-content-around">
                 {% for driver in drivers %}
-                    <div class="col-lg-4">
+                    <div class="col-6 col-lg-4">
                         <div class="card border border-dark">
-                            <img class="card-img-top rounded" src="" alt="Driver {{ driver.name }}">
-                            <div class="card-body bg-dark text-white">
-                                <h5 class="card-title">{{ driver.name }}</h5>
+                            <img class="card-img-top rounded img-fluid" src="{{ url_for('static', filename=driver.picture) }}" alt="Driver {{ driver.name }}">
+                            <div class="card-body bg-dark">
+                                {# call macro to render the form element #}
+                                {% call f.form_tag('game.update_game',
+                                                   css_class='text-center',
+                                                   driver_id=driver.id,
+                                                   driver_name=driver.name) %}
+                                    <button type="submit" class="btn btn-success pill-btn pill-btn-nav">Select {{ driver.name }}</button>
+                                {% endcall %}
                             </div>
                         </div>
-                        {# call macro to render the form element #}
-                        {% call f.form_tag('game.update_game',
-                                           css_class='contact-form mt-4 text-center',
-                                           driver_id=driver.id,
-                                           driver_name=driver.name) %}
-                            <button type="submit" class="btn btn-primary btn-lg mb-4">Pick {{ driver.name }}</button>
-                        {% endcall %}
                     </div>
                 {% endfor %}
             </div>
         <!-- Show default cards if player hasn't started -->
         {% else %}
-            <div class="row d-flex align-items-center justify-content-center game-custom">
-                <div class="col-lg-4">
-                    <div class="card border">
-                        <img class="card-img-top" src="" alt="Random Driver">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card border">
-                        <img class="card-img-top" src="" alt="Random Driver">
-                    </div>
+        <div class="row d-flex align-items-center justify-content-center game-custom">
+            <div class="col-6 col-lg-4">
+                <div class="card border">
+                    <img class="card-img-top" src="{{ url_for('static', filename='images/random_driver_left.png') }}" alt="Random Driver">
                 </div>
             </div>
-            <div class="row d-flex align-items-center justify-content-center">
-                {# call macro to render the form element #}
-                {% call f.form_tag('game.play_game') %}
-                    <button type="submit" class="btn btn-primary btn-lg mb-4">Get My Drivers</button>
-                {% endcall %}
+            <div class="col-6 col-lg-4">
+                <div class="card border">
+                    <img class="card-img-top" src="{{ url_for('static', filename='images/random_driver_right.png') }}" alt="Random Driver">
+                </div>
             </div>
+        </div>
+        <div class="row d-flex align-items-center justify-content-center">
+            {# call macro to render the form element #}
+            {% call f.form_tag('game.play_game') %}
+                <button type="submit" class="btn btn-primary btn-lg mb-4">Draw Drivers</button>
+            {% endcall %}
+        </div>
         {% endif %}
     </div>
 {% endblock %}

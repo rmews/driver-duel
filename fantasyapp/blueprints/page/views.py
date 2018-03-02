@@ -8,11 +8,6 @@ def home():
     return render_template('page/home.html')
 
 
-@page.route('/how_to_play')
-def how_to_play():
-    return render_template('page/how_to_play.html')
-
-
 @page.route('/terms')
 def terms():
     return render_template('page/terms.html')

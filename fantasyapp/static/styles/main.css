@@ -183,8 +183,7 @@ a.logo:hover, a.logo:active, a.logo:focus {
 -------------------------------------------------- */
 
 .cover {
-    background: #2D3B60 center;
-    background: #2D3B60;
+    background: linear-gradient(to left, transparent, #2D3B60), url(../images/DriverDuelCover.png);
     background-size: cover;
     margin-top: -1rem;
     height: auto;

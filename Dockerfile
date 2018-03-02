@@ -12,6 +12,9 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
+
+VOLUME ["static"]
+
 RUN pip install --editable .
 
 CMD gunicorn -c "python:config.gunicorn" "fantasyapp.app:create_app()"

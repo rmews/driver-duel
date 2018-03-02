@@ -14,11 +14,10 @@
                         <p class="lead">The fantasy game that's fun and rewarding. With many different ways to win vs. traditional fantasy games.</p>
                         <p>
                             <a href="{{ url_for('user.signup') }}" class="btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn pill-btn-cover">Sign Up</a>
-                            <a href="{{ url_for('page.how_to_play') }}" class="btn link-white mb-2 ml-2 ml-2 pill-btn">Learn More</a>
+                            <a href="{{ url_for('page.faq') }}" class="btn link-white mb-2 ml-2 ml-2 pill-btn">Learn More</a>
                         </p>
                     </div>
                     <div class="col-lg-5 offset-lg-2 mt-5 mb-5 text-center">
-                        <img class="img-fluid mt-5 mb-5" src="{{ url_for('static', filename='images/esports.jpg') }}">
                     </div>
                 </div>
             </div>
@@ -30,32 +29,32 @@
     <!-- Features Content -->
     <section class="features text-center">
         <div class="container">
-            <h2>Features</h2>
+            <h2>Game Overview</h2>
             <div class="divider"></div>
             <div class="row">
                 <div class="col-md-4 col-feature">
                     <div class="rounded-circle justify-center">
                         <em class="fas fa-2x fa-clone"></em>
                     </div>
-                    <h4>Collect Drivers</h4>
-                    <p>Receive two new random drivers each week. Choose wisely and rank up to earn digital currency.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
+                    <h4>Select Drivers</h4>
+                    <p>Receive two new random drivers each week. Choose wisely and rank up on the weekly and overall leaderboard.</p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.faq') }}" role="button">Learn More</a></p>
                 </div>
                 <div class="col-md-4 col-feature">
                     <div class="rounded-circle justify-center">
                         <em class="fas fa-2x fa-users"></em>
                     </div>
-                    <h4>Random Matchmaking</h4>
-                    <p>Get paired against a random opponent each week. Each matchup has a variety of ways to rank up to earn digital currency.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
+                    <h4>Matchmaking - COMING SOON</h4>
+                    <p>Get paired against a random opponent each week. Earn driver points and for beating your opponent.</p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.faq') }}" role="button">Learn More</a></p>
                 </div>
                 <div class="col-md-4 col-feature">
                     <div class="rounded-circle justify-center">
                         <em class="fas fa-2x fa-trophy"></em>
                     </div>
                     <h4>Leaderboard</h4>
-                    <p>Score points with a variety of fun challenges. Track progress over the course of the season to rank up and earn the ultimate prize.</p>
-                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.how_to_play') }}" role="button">View details</a></p>
+                    <p>Score points in five different categories. Rank up for a chance to win a prize each week and at season end.</p>
+                    <p><a class="btn btn-outline-primary mt-2" href="{{ url_for('page.faq') }}" role="button">Learn More</a></p>
                 </div>
             </div>
         </div>
@@ -63,38 +62,17 @@
     <section class="content">
         <div class="container">
             <div class="row justify-center">
-                <div class="col-md-6 text-center">
-                    <img class="mb-4 img-fluid" src="" >
+                <div class="col-md-6 text-center mt-3">
+                    <img class="img-fluid" src="{{ url_for('static', filename='images/DriverDuelCards.png') }}">
                 </div>
-                <div class="col-md-6 text-center text-md-left" >
-                    <h2 class="mb-4 mt-4">Collect Drivers</h2>
-                    <p class="mb-4">Instead of spending hours trying to find the right line-up, like traditional fantasy games, Driver Duel gives each player a choice - pick between two random drivers. This method goes back to the card collecting days of opening packs and seeing if your driver can out-duel the other driver. If you don't like your driver selection, don't worry, you can always redraw one more time.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="content">
-        <div class="container">
-            <div class="row justify-center">
-                <div class="col-md-6 text-center text-md-left pl-5">
-                    <h2 class="mb-4 mt-4">Random Matchmaking</h2>
-                    <p class="mb-4">What good is a game if you're playing alone? Instead of battling against a bunch of other players that have a ton of lineups, your are randomly paired against another player. This other player also receives two random drivers making the driver duel that much more interesting.</p>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img class="mb-4 img-fluid" src="" >
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="content">
-        <div class="container">
-            <div class="row justify-center">
-                <div class="col-md-6 text-center">
-                    <img class="mb-4 img-fluid" src="" >
-                </div>
-                <div class="col-md-6 text-center text-md-left" >
-                    <h2 class="mb-4 mt-4">Leaderboard</h2>
-                    <p class="mb-4">Driver Duel is different than traditional fantasy games when it comes to scoring. Yes, you will earn points each week for laps lead, fastest laps, position differential, and finishing position. You'll also earn points for winning your duel, but instead of those points resetting each race, you'll get to keep those points and track your progress on the overall leaderboard. There are multiple ways to win, so view the <a href="{{ url_for('page.faq') }}">FAQ</a> for a complete breakdown.</p>
+                <div class="col-md-6 text-center text-md-left mt-3" >
+                    <h2 class="mb-4 mt-4">How To Play</h2>
+                    <h4 class="mt-4">1. Register and Enter a Game</h4>
+                    <p>Register with just an email address. Enter a game by clicking the play button.</p>
+                    <h4 class="mt-4">2. Select Your Driver</h4>
+                    <p>Select from one of two random drivers.</p>
+                    <h4 class="mt-4">3. Watch and Win</h4>
+                    <p>Come back after the race to see how your driver ranked for the week and where you rank overall for the season.</p>
                 </div>
             </div>
         </div>

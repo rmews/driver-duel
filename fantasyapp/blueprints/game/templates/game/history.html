@@ -4,7 +4,7 @@
 {% block page_title %}Game History{% endblock %}
 
 {% block body %}
-    <div class="container mt-3">
+    <div class="container pt-3 pb-4 mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10">
                 {% if current_user.games %}
@@ -39,11 +39,41 @@
                                                 {% endif %}
                                             {% endfor %}
                                         </td>
-                                        <td>{{ game.laps_led }}</td>
-                                        <td>{{ game.fastest_laps }}</td>
-                                        <td>{{ game.finish }}</td>
-                                        <td>{{ game.differential }}</td>
-                                        <td>{{ game.total_points }}</td>
+                                        <td>
+                                            {% if game.laps_led == None %}
+                                                N/A
+                                            {% else %}
+                                                {{ game.laps_led }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if game.fastest_laps == None %}
+                                                N/A
+                                            {% else %}
+                                                {{ game.fastest_laps }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if game.finish == None %}
+                                                N/A
+                                            {% else %}
+                                                {{ game.finish }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if game.differential == None %}
+                                                N/A
+                                            {% else %}
+                                                {{ game.differential }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if game.total_points == None %}
+                                                N/A
+                                            {% else %}
+                                                {{ game.total_points }}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

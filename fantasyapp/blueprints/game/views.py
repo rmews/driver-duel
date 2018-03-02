@@ -121,7 +121,7 @@ def update_game():
         game_to_update.save()
 
         flash('Good luck! You picked %s. Come back after the race to see how you did.' % driver_name, 'success')
-        return redirect(url_for('user.settings'))
+        return redirect(url_for('game.dashboard'))
     else:
         flash('It looks like something went wrong.', 'warning')
         return redirect(url_for('game.dashboard'))
