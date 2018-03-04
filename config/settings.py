@@ -102,204 +102,198 @@ POINTS_FASTEST_LAPS = {
 # End time needs to be 15 minutes before race starts.
 RACES = {
     '1': {
-        'id': 'race_3',
-        'name': 'Las Vegas (Spring)',
-        'start_time': datetime.datetime(2018, 2, 25, 20, 0, tzinfo=utc),
-        'end_time': datetime.datetime(2018, 3, 4, 20, 30, 0, tzinfo=utc),
-    },
-    '2': {
         'id': 'race_4',
         'name': 'Phoenix (Spring)',
         'start_time': datetime.datetime(2018, 3, 5, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 3, 11, 20, 30, 0, tzinfo=utc),
     },
-    '3': {
+    '2': {
         'id': 'race_5',
         'name': 'Auto Club',
         'start_time': datetime.datetime(2018, 3, 12, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 3, 18, 20, 30, 0, tzinfo=utc),
     },
-    '4': {
+    '3': {
         'id': 'race_6',
         'name': 'Martinsville (Spring)',
         'start_time': datetime.datetime(2018, 3, 19, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 3, 25, 19, 0, 0, tzinfo=utc),
     },
-    '5': {
+    '4': {
         'id': 'race_7',
         'name': 'Texas (Spring)',
         'start_time': datetime.datetime(2018, 3, 26, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 4, 8, 19, 0, 0, tzinfo=utc),
     },
-    '6': {
+    '5': {
         'id': 'race_8',
         'name': 'Bristol (Spring)',
         'start_time': datetime.datetime(2018, 4, 9, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 4, 15, 19, 0, 0, tzinfo=utc),
     },
-    '7': {
+    '6': {
         'id': 'race_9',
         'name': 'Richmond (Spring)',
         'start_time': datetime.datetime(2018, 4, 16, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 4, 21, 23, 30, 0, tzinfo=utc),
     },
-    '8': {
+    '7': {
         'id': 'race_10',
         'name': 'Talladega (Spring)',
         'start_time': datetime.datetime(2018, 4, 22, 7, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 4, 29, 19, 0, 0, tzinfo=utc),
     },
-    '9': {
+    '8': {
         'id': 'race_11',
         'name': 'Dover (Spring)',
         'start_time': datetime.datetime(2018, 4, 30, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 5, 6, 19, 0, 0, tzinfo=utc),
     },
-    '10': {
+    '9': {
         'id': 'race_12',
         'name': 'Kansas (Spring)',
         'start_time': datetime.datetime(2018, 5, 7, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 5, 13, 1, 0, 0, tzinfo=utc),
     },
-    '11': {
+    '10': {
         'id': 'race_13',
         'name': 'Charlotte (Spring)',
         'start_time': datetime.datetime(2018, 5, 20, 9, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 5, 27, 23, 0, 0, tzinfo=utc),
     },
-    '12': {
+    '11': {
         'id': 'race_14',
         'name': 'Pocono (Spring)',
         'start_time': datetime.datetime(2018, 5, 28, 7, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 6, 3, 19, 0, 0, tzinfo=utc),
     },
-    '13': {
+    '12': {
         'id': 'race_15',
         'name': 'Michigan (Spring)',
         'start_time': datetime.datetime(2018, 6, 4, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 6, 10, 19, 0, 0, tzinfo=utc),
     },
-    '14': {
+    '13': {
         'id': 'race_16',
         'name': 'Sonoma',
         'start_time': datetime.datetime(2018, 6, 11, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 6, 24, 20, 0, 0, tzinfo=utc),
     },
-    '15': {
+    '14': {
         'id': 'race_17',
         'name': 'Chicagoland',
         'start_time': datetime.datetime(2018, 6, 25, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 7, 1, 19, 30, 0, tzinfo=utc),
     },
-    '16': {
+    '15': {
         'id': 'race_18',
         'name': 'Daytona (Summer)',
         'start_time': datetime.datetime(2018, 7, 2, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 7, 8, 0, 0, 0, tzinfo=utc),
     },
-    '17': {
+    '16': {
         'id': 'race_19',
         'name': 'Kentucky',
         'start_time': datetime.datetime(2018, 7, 8, 8, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 7, 15, 0, 30, 0, tzinfo=utc),
     },
-    '18': {
+    '17': {
         'id': 'race_20',
         'name': 'New Hampshire (Summer)',
         'start_time': datetime.datetime(2018, 7, 15, 9, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 7, 22, 19, 0, 0, tzinfo=utc),
     },
-    '19': {
+    '18': {
         'id': 'race_21',
         'name': 'Pocono (Summer)',
         'start_time': datetime.datetime(2018, 7, 23, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 7, 29, 19, 30, 0, tzinfo=utc),
     },
-    '20': {
+    '19': {
         'id': 'race_22',
         'name': 'Watkins Glen',
         'start_time': datetime.datetime(2018, 7, 30, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 8, 5, 19, 30, 0, tzinfo=utc),
     },
-    '21': {
+    '20': {
         'id': 'race_23',
         'name': 'Michigan (Summer)',
         'start_time': datetime.datetime(2018, 8, 6, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 8, 12, 19, 30, 0, tzinfo=utc),
     },
-    '22': {
+    '21': {
         'id': 'race_24',
         'name': 'Bristol (Summer)',
         'start_time': datetime.datetime(2018, 8, 13, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 8, 19, 0, 30, 0, tzinfo=utc),
     },
-    '23': {
+    '22': {
         'id': 'race_25',
         'name': 'Darlington',
         'start_time': datetime.datetime(2018, 8, 19, 8, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 9, 2, 23, 0, 0, tzinfo=utc),
     },
-    '24': {
+    '23': {
         'id': 'race_26',
         'name': 'Indianapolis',
         'start_time': datetime.datetime(2018, 9, 3, 7, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 9, 9, 19, 0, 0, tzinfo=utc),
     },
-    '25': {
+    '24': {
         'id': 'race_27',
         'name': 'Las Vegas (Fall)',
         'start_time': datetime.datetime(2018, 9, 10, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 9, 16, 20, 0, 0, tzinfo=utc),
     },
-    '26': {
+    '25': {
         'id': 'race_28',
         'name': 'Richmond (Fall)',
         'start_time': datetime.datetime(2018, 9, 17, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 9, 23, 0, 30, 0, tzinfo=utc),
     },
-    '27': {
+    '26': {
         'id': 'race_29',
         'name': 'Charlotte (Fall)',
         'start_time': datetime.datetime(2018, 9, 23, 8, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 9, 30, 19, 0, 0, tzinfo=utc),
     },
-    '28': {
+    '27': {
         'id': 'race_30',
         'name': 'Dover (Fall)',
         'start_time': datetime.datetime(2018, 10, 1, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 10, 7, 19, 0, 0, tzinfo=utc),
     },
-    '29': {
+    '28': {
         'id': 'race_31',
         'name': 'Talladega (Fall)',
         'start_time': datetime.datetime(2018, 10, 8, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 10, 14, 19, 0, 0, tzinfo=utc),
     },
-    '30': {
+    '29': {
         'id': 'race_32',
         'name': 'Kansas (Fall)',
         'start_time': datetime.datetime(2018, 10, 15, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 10, 21, 19, 0, 0, tzinfo=utc),
     },
-    '31': {
+    '30': {
         'id': 'race_33',
         'name': 'Martinsville (Fall)',
         'start_time': datetime.datetime(2018, 10, 22, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 10, 28, 19, 30, 0, tzinfo=utc),
     },
-    '32': {
+    '31': {
         'id': 'race_34',
         'name': 'Texas (Fall)',
         'start_time': datetime.datetime(2018, 10, 29, 3, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 11, 4, 20, 0, 0, tzinfo=utc),
     },
-    '33': {
+    '32': {
         'id': 'race_35',
         'name': 'Phoenix (Fall)',
         'start_time': datetime.datetime(2018, 11, 5, 4, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 11, 11, 19, 30, 0, tzinfo=utc),
     },
-    '34': {
+    '33': {
         'id': 'race_36',
         'name': 'Homestead-Miami',
         'start_time': datetime.datetime(2018, 11, 12, 4, 0, tzinfo=utc),
