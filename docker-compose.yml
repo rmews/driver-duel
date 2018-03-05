@@ -39,6 +39,14 @@ services:
         volumes:
             - '.:/fantasyapp'
 
+    nginx:
+        restart: always
+        build: ../deploy/nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - website
+
 volumes:
     postgres:
     redis:
