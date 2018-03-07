@@ -30,6 +30,9 @@ services:
             - '.:/fantasyapp'
         ports:
             - '8000:8000'
+        depends_on:
+            - postgres
+            - redis
 
     celery:
         build: .
@@ -38,6 +41,9 @@ services:
             - '.env'
         volumes:
             - '.:/fantasyapp'
+        depends_on:
+            - postgres
+            - redis
 
     nginx:
         restart: always
