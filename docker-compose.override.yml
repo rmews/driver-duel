@@ -24,8 +24,8 @@ services:
             - '.env'
         volumes:
             - '.:/fantasyapp'
-        ports:
-            - "8000:8000"
+        expose:
+            - "8000"
         depends_on:
             - postgres
             - redis
@@ -40,6 +40,15 @@ services:
         depends_on:
             - postgres
             - redis
+
+    nginx:
+        restart: always
+        build: ../deploy/nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - website
 
 volumes:
     postgres:
