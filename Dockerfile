@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-VOLUME ["static"]
+VOLUME ["/fantasyapp/fantasyapp/static"]
 
 RUN pip install --editable .
 
