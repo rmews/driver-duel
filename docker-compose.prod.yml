@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
     postgres:
-        restart: on-failures
+        restart: always
         image: 'postgres:10.0'
         env_file:
             - '.env_prod'
@@ -10,14 +10,14 @@ services:
             - 'postgres:/var/lib/postgresql/data'
 
     redis:
-        restart: on-failures
+        restart: always
         image: 'redis:3.2.11-alpine'
         command: redis-server --requirepass devpassword
         volumes:
             - 'redis:/var/lib/redis/data'
 
     website:
-        restart: on-failures
+        restart: always
         build: .
         command: >
             gunicorn -c "python:config.gunicorn"
@@ -34,7 +34,7 @@ services:
             - redis
 
     celery:
-        restart: on-failures
+        restart: always
         build: .
         command: celery worker -l info -A fantasyapp.blueprints.contact.tasks
         env_file:
@@ -46,7 +46,7 @@ services:
             - redis
 
     nginx:
-        restart: on-failures
+        restart: always
         build: ../deploy/nginx
         ports:
             - "80:80"
