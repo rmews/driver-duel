@@ -12,7 +12,7 @@ services:
     redis:
         restart: always
         image: 'redis:3.2.11-alpine'
-        command: redis-server --requirepass devpassword
+        command: redis-server --requirepass nN7-rgu-z7H-auS
         volumes:
             - 'redis:/var/lib/redis/data'
 
