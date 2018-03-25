@@ -122,7 +122,7 @@ RACES = {
     '4': {
         'id': 'race_7',
         'name': 'Texas (Spring)',
-        'start_time': datetime.datetime(2018, 3, 26, 3, 0, tzinfo=utc),
+        'start_time': datetime.datetime(2018, 3, 26, 21, 0, tzinfo=utc),
         'end_time': datetime.datetime(2018, 4, 8, 19, 0, 0, tzinfo=utc),
     },
     '5': {
