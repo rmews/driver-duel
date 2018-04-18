@@ -53,6 +53,7 @@ class Leaderboard(object):
                                  func.sum(differential).label('differential'),
                                  func.sum(total_points).label('total_points')) \
                           .group_by(group_field) \
+                          .filter(total_points != None) \
                           .order_by(desc('total_points'))
 
         return query
