@@ -18,7 +18,7 @@
                                                    css_class='text-center',
                                                    driver_id=driver.id,
                                                    driver_name=driver.name) %}
-                                    <button type="submit" class="btn btn-success pill-btn pill-btn-nav">Select {{ driver.name }}</button>
+                                    <button type="submit" class="btn btn-success pill-btn pill-btn-nav btn-block">Select {{ driver.name }}</button>
                                 {% endcall %}
                             </div>
                         </div>
@@ -42,7 +42,7 @@
         <div class="row d-flex align-items-center justify-content-center">
             {# call macro to render the form element #}
             {% call f.form_tag('game.play_game') %}
-                <button type="submit" class="btn btn-primary btn-lg mb-4">Draw Drivers</button>
+                <button type="submit" class="btn btn-primary btn-lg mb-4 btn-block">Draw Drivers</button>
             {% endcall %}
         </div>
         {% endif %}

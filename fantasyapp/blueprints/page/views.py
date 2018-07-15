@@ -21,3 +21,7 @@ def privacy():
 @page.route('/faq')
 def faq():
     return render_template('page/faq.html')
+
+@page.route('/waitlist')
+def waitlist():
+    return render_template('page/waitlist.html')

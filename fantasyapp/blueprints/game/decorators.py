@@ -29,7 +29,7 @@ def inactive_game_required(url='/settings'):
                                      .count()
 
             if current_game >= 1:
-                flash('Sorry, you cannot draw drivers more than once a race.', 'danger')
+                flash('Sorry, you cannot draw drivers more than once a race.', 'warning')
                 return redirect(url)
 
             return f(*args, **kwargs)
